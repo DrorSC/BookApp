@@ -1,16 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
+import { BookListComponent } from './books/book-list/book-list.component';
+import { OnlyEnglishLettersPipe } from './books/only-english-letters.pipe';
+// import { EditModalComponent } from './modals/edit-modal/edit-modal.component';
+import { ModalEditBook } from './modals/modal-edit-book/modal-edit-book.component';
+import { ModalNewBookComponent } from './modals/modal-new-book/modal-new-book.component';
+import { BookService } from './books/book.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BookListComponent,
+    OnlyEnglishLettersPipe,
+    ModalEditBook,
+    ModalNewBookComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    NgbModule,
+    HttpClientModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [BookService],
+  bootstrap: [AppComponent],
+  entryComponents: [ ModalNewBookComponent ]
 })
 export class AppModule { }

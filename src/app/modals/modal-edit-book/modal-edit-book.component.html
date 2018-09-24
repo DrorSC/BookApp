@@ -1,0 +1,49 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-edit-book-title">Book Edit</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmit()" #bookForm="ngForm">
+      <label for="bookId">Book id</label>
+      <div class="input-group">
+        <input id="bookId" class="form-control" readonly value="{{myBook?.id}}">
+      </div>
+      <label for="authorName">Author Name</label>
+      <div class="input-group">
+        <input id="authorName" class="form-control" name="authorName" [(ngModel)]="bookToEdit.authorName" required
+          #authorName="ngModel">
+        <div [hidden]="authorName.valid || authorName.pristine" class="alert alert-danger">
+          Author Name is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="publishedDate">Date of publish</label>
+        <div class="input-group">
+          <input id="publishedDate" class="form-control" name="dp" ngbDatepicker #dp="ngbDatepicker" name="publishedDate"
+            readonly [(ngModel)]="bookToEdit.publishedDate" required #publishedDate="ngModel">
+          <div [hidden]="publishedDate.valid || publishedDate.pristine" class="alert alert-danger">
+            Published Date is required
+          </div>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+          </div>
+        </div>
+        <label for="bookTitle">Book title</label>
+        <div class="input-group">
+          <input id="bookTitle" class="form-control" name="bookTitle" [(ngModel)]="bookToEdit.bookTitle" required
+            #bookTitle="ngModel">
+          <div [hidden]="bookTitle.valid || bookTitle.pristine" class="alert alert-danger">
+            Book Title is required
+          </div>
+        </div>
+      </div>
+      <button [disabled]="!bookForm.form.valid" type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </form>
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Edit</button>
