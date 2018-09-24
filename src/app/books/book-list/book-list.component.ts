@@ -51,7 +51,6 @@ export class BookListComponent implements OnInit {
   onSaveClicked(newBook: Book): void {
     var tmp = this.filteredBooks.filter(x => x.id == newBook.id);
     var bookIndex =this.filteredBooks.indexOf(tmp[0]);
-    console.log("book index " + bookIndex);
     this.filteredBooks[bookIndex].authorName = newBook.authorName;
     this.filteredBooks[bookIndex].publishedDate = newBook.publishedDate;
     this.filteredBooks[bookIndex].bookTitle = newBook.bookTitle;
