@@ -37,7 +37,6 @@ export class ModalNewBookComponent {
   }
 
   focusOutFunc() {
-    console.log("focus out");
     if (this.newBook.bookTitle == "" || this.newBook.bookTitle == null) {
       this.isValid = true;
       return;

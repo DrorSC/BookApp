@@ -22,8 +22,8 @@
       <div class="form-group">
         <label for="publishedDate">Date of publish</label>
         <div class="input-group">
-          <input id="publishedDate" class="form-control" name="dp" ngbDatepicker #dp="ngbDatepicker" name="publishedDate"
-            readonly [(ngModel)]="bookToEdit.publishedDate" required #publishedDate="ngModel">
+          <input id="publishedDate" class="form-control" name="dp" ngbDatepicker #dp="ngbDatepicker"
+            readonly placeholder="{{myBook.publishedDate}}" [(ngModel)]="bookToEdit.publishedDate" required #publishedDate="ngModel">
           <div [hidden]="publishedDate.valid || publishedDate.pristine" class="alert alert-danger">
             Published Date is required
           </div>

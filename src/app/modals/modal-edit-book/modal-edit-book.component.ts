@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
-import { NgbModal, ModalDismissReasons, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Book } from '../../models/book';
 
 @Component({
@@ -10,19 +10,19 @@ import { Book } from '../../models/book';
 export class ModalEditBook implements OnInit {
   @Input() myBook: Book;
   bookToEdit: Book;
-  
+
   @Input() myBooks: Book[];
   isValid: boolean;
 
   submitted = false;
 
-  onSubmit() {this.submitted=true;}
-  
+  onSubmit() { this.submitted = true; }
+
   @Output() saveClicked: EventEmitter<Book> =
     new EventEmitter<Book>();
 
-  constructor(private modalService: NgbModal, private ParserFormatter: NgbDateParserFormatter) {}
-  
+  constructor(private modalService: NgbModal) { }
+
   ngOnInit(): void {
     this.bookToEdit = new Book();
     this.bookToEdit.id = this.myBook.id;
@@ -30,10 +30,11 @@ export class ModalEditBook implements OnInit {
     this.bookToEdit.publishedDate = this.myBook.publishedDate;
     this.bookToEdit.bookTitle = this.myBook.bookTitle;
   }
-  
+
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-edit-book-title'}).result.then((result) => {
-      
+    this.bookToEdit.publishedDate = this.myBook.publishedDate;
+    this.modalService.open(content, { ariaLabelledBy: 'modal-edit-book-title' }).result.then((result) => {
+
       var a = JSON.parse(JSON.stringify(this.bookToEdit.publishedDate));
       this.bookToEdit.publishedDate = a.year + "-" + a.month + "-" + a.day;
       this.saveClicked.emit(this.bookToEdit);
@@ -49,7 +50,7 @@ export class ModalEditBook implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
   focusOutFunc() {
@@ -66,7 +67,7 @@ export class ModalEditBook implements OnInit {
     }
     this.isValid = true;
   }
-  focusFunc(){
+  focusFunc() {
     this.isValid = true;
   }
 }
