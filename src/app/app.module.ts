@@ -11,6 +11,7 @@ import { OnlyEnglishLettersPipe } from './books/only-english-letters.pipe';
 import { ModalEditBook } from './modals/modal-edit-book/modal-edit-book.component';
 import { ModalNewBookComponent } from './modals/modal-new-book/modal-new-book.component';
 import { BookService } from './books/book.service';
+import { ModalDeleteBookComponent } from './modals/modal-delete-book/modal-delete-book.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BookService } from './books/book.service';
     BookListComponent,
     OnlyEnglishLettersPipe,
     ModalEditBook,
-    ModalNewBookComponent
+    ModalNewBookComponent,
+    ModalDeleteBookComponent
   ],
   imports: [
     BrowserModule,

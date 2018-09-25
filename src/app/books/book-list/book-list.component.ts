@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Book, GoogleBook } from '../../models/book';
 import { BookService } from '../book.service';
 import { GoogleBooksApiResponse } from '../../models/GoogleBooksApiResponse.model';
@@ -24,7 +24,6 @@ export class BookListComponent implements OnInit {
 
   filteredBooks: Book[];
   books: Book[] = [];
-  filteredGoogleBooks: GoogleBook[];
   gbooks: GoogleBook[] = [];
   gBooksApiResponse: GoogleBooksApiResponse;
 
@@ -70,7 +69,7 @@ export class BookListComponent implements OnInit {
     this.books.push(addBook);
   }
 
-  deleteBook(bookId: string): void {
+  onDeleteClicked(bookId: string): void {
     var tmp = this.filteredBooks.filter(x => x.id == bookId);
     this.books.splice(this.books.indexOf(tmp[0]), 1);
   }

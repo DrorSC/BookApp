@@ -1,4 +1,3 @@
-
 <div class='card'>
   <div class='card-header'>
     {{pageTitle}}
@@ -7,21 +6,19 @@
     <div class='row'>
       <div class='col-md-2'>Book Title Filter:</div>
       <div class='col-md-4'>
-        <input type='text' 
-              [(ngModel)]='listFilter'/>
+        <input type='text' [(ngModel)]='listFilter' />
       </div>
       <div class='col-md-6'>
-          <h4>Filtered by: {{listFilter}} </h4>
-        </div>
+        <h4>Filtered by: {{listFilter}} </h4>
+      </div>
     </div>
     <div class='table-responsive'>
-      <table class='table'
-              *ngIf='books && books.length'>
+      <table class='table' *ngIf='books && books.length'>
         <thead>
           <tr>
             <th>
-                <app-modal-new-book (onSaveClick)='onSaveNewBook($event)'>
-                </app-modal-new-book>
+              <app-modal-new-book (onSaveClick)='onSaveNewBook($event)'>
+              </app-modal-new-book>
             </th>
             <th>Id</th>
             <th>Author Name</th>
@@ -32,18 +29,16 @@
         <tbody>
           <tr *ngFor='let book of filteredBooks'>
             <td>
-              <img *ngIf='showImage'
-                  [src]='book.ImageUrl' [title]='book.bookName'
-                  [style.width.px]='imageWidth' [style.margin.px]='imageMargin'>
+              <img *ngIf='showImage' [src]='book.ImageUrl' [title]='book.bookName' [style.width.px]='imageWidth'
+                [style.margin.px]='imageMargin'>
             </td>
             <td>{{book.id}}</td>
             <td>{{book.authorName}}</td>
             <td>{{book.publishedDate}}</td>
             <td>{{book.bookTitle | titlecase | onlyEnglishLetters}}</td>
             <td>
-              <app-modal-edit-book [myBook]="book"
-                (saveClicked)='onSaveClicked($event)'></app-modal-edit-book>
-              <button class="btn btn-lg btn-outline-primary" (click)="deleteBook(book.id)">Delete</button>
+              <app-modal-edit-book [myBook]="book" (saveClicked)='onSaveClicked($event)'></app-modal-edit-book>
+              <app-modal-delete-book [myBook]="book" (deleteClicked)='onDeleteClicked($event)'></app-modal-delete-book>
             </td>
           </tr>
         </tbody>
