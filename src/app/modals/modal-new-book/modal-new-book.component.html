@@ -39,14 +39,14 @@
           <label for="bookTitle">Book title</label>
           <div class="input-group">
             <input id="bookTitle" class="form-control" name="bookTitle" [(ngModel)]="newBook.bookTitle"
-              required #bookTitle="ngModel" (focus)="focusFunc()" (focusout)="focusOutFunc()">
+              required #bookTitle="ngModel" (focusout)="focusOutFunc()">
             <div [hidden]="bookTitle.valid && isValid || bookTitle.pristine" class="alert alert-danger">
               {{isValid ? 'Book Title is required' : 'This Book Title Already exist!'}}
             </div>
           </div>
         </div>
       </div>
-      <button [disabled]="!bookForm.form.valid" type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save
+      <button [disabled]="!bookForm.form.valid || !isValid" type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save
         Book</button>
       <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cancel click')">Cancel</button>
     </form>

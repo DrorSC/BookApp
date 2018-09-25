@@ -67,7 +67,4 @@ export class ModalEditBook implements OnInit {
     }
     this.isValid = true;
   }
-  focusFunc() {
-    this.isValid = true;
-  }
 }

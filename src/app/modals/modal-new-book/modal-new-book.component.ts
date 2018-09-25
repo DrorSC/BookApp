@@ -27,6 +27,7 @@ export class ModalNewBookComponent {
   }
 
   open(content) {
+    this.newBook = new Book();
     this.modalService.open(content, { ariaLabelledBy: 'modal-edit-book-title' }).result.then((result) => {
       var a = JSON.parse(JSON.stringify(this.newBook.publishedDate));
       this.newBook.publishedDate = a.year + "-" + a.month + "-" + a.day;
@@ -47,9 +48,6 @@ export class ModalNewBookComponent {
         return;
       }
     }
-    this.isValid = true;
-  }
-  focusFunc(){
     this.isValid = true;
   }
 }
