@@ -1,7 +1,6 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { ModalDismissReasons, NgbModal, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Book } from '../../models/book';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-modal-new-book',
@@ -10,19 +9,21 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class ModalNewBookComponent {
   newBook = new Book();
-  
+  isValid: boolean = true;
   model: Book;
   submitted = false;
 
-  onSubmit() {this.submitted=true;}
+  @Input() myBooks: Book[];
+
+  onSubmit() { this.submitted = true; }
 
   @Output() onSaveClick: EventEmitter<Book> =
     new EventEmitter<Book>();
 
-  constructor(private modalService: NgbModal, private parserFormatter: NgbDateParserFormatter) {}
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    
+
   }
 
   open(content) {
@@ -35,13 +36,21 @@ export class ModalNewBookComponent {
     });
   }
 
-  // private getDismissReason(reason: any): string {
-  //   if (reason === ModalDismissReasons.ESC) {
-  //     return 'by pressing ESC';
-  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-  //     return 'by clicking on a backdrop';
-  //   } else {
-  //     return `with: ${reason}`;
-  //   }
-  // }
+  focusOutFunc() {
+    console.log("focus out");
+    if (this.newBook.bookTitle == "" || this.newBook.bookTitle == null) {
+      this.isValid = true;
+      return;
+    }
+    for (let book of this.myBooks) {
+      if (book.bookTitle.toLocaleLowerCase() == this.newBook.bookTitle.toLocaleLowerCase()) {
+        this.isValid = false;
+        return;
+      }
+    }
+    this.isValid = true;
+  }
+  focusFunc(){
+    this.isValid = true;
+  }
 }

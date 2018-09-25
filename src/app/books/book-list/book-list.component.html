@@ -17,7 +17,7 @@
         <thead>
           <tr>
             <th>
-              <app-modal-new-book (onSaveClick)='onSaveNewBook($event)'>
+              <app-modal-new-book [myBooks]="books" (onSaveClick)='onSaveNewBook($event)'>
               </app-modal-new-book>
             </th>
             <th>Id</th>
@@ -37,7 +37,7 @@
             <td>{{book.publishedDate}}</td>
             <td>{{book.bookTitle | titlecase | onlyEnglishLetters}}</td>
             <td>
-              <app-modal-edit-book [myBook]="book" (saveClicked)='onSaveClicked($event)'></app-modal-edit-book>
+              <app-modal-edit-book [myBooks]="books" [myBook]="book" (saveClicked)='onSaveClicked($event)'></app-modal-edit-book>
               <app-modal-delete-book [myBook]="book" (deleteClicked)='onDeleteClicked($event)'></app-modal-delete-book>
             </td>
           </tr>

@@ -11,6 +11,9 @@ export class ModalEditBook implements OnInit {
   @Input() myBook: Book;
   bookToEdit: Book;
   
+  @Input() myBooks: Book[];
+  isValid: boolean;
+
   submitted = false;
 
   onSubmit() {this.submitted=true;}
@@ -48,5 +51,22 @@ export class ModalEditBook implements OnInit {
     } else {
       return  `with: ${reason}`;
     }
+  }
+  focusOutFunc() {
+    console.log("focus out");
+    if (this.bookToEdit.bookTitle == "" || this.bookToEdit.bookTitle == null) {
+      this.isValid = true;
+      return;
+    }
+    for (let book of this.myBooks) {
+      if (book.bookTitle.toLocaleLowerCase() == this.bookToEdit.bookTitle.toLocaleLowerCase()) {
+        this.isValid = false;
+        return;
+      }
+    }
+    this.isValid = true;
+  }
+  focusFunc(){
+    this.isValid = true;
   }
 }

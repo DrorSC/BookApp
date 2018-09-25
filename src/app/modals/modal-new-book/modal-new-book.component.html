@@ -39,9 +39,9 @@
           <label for="bookTitle">Book title</label>
           <div class="input-group">
             <input id="bookTitle" class="form-control" name="bookTitle" [(ngModel)]="newBook.bookTitle"
-              required  #bookTitle="ngModel">
-            <div [hidden]="bookTitle.valid || bookTitle.pristine" class="alert alert-danger">
-              Book Title is required
+              required #bookTitle="ngModel" (focus)="focusFunc()" (focusout)="focusOutFunc()">
+            <div [hidden]="bookTitle.valid && isValid || bookTitle.pristine" class="alert alert-danger">
+              {{isValid ? 'Book Title is required' : 'This Book Title Already exist!'}}
             </div>
           </div>
         </div>
