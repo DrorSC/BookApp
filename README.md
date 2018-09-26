@@ -1,3 +1,13 @@
+
+This web app was built for my job application to Herolo Front End position.
+
+GitHub Pages link: https://drorsc.github.io/herolobookapp/
+
+
+
+
+#Angular default README:
+
 # HeroloBookApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.3.
